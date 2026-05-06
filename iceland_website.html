@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Ice Land – Park View City, Lahore</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#0A0A0F;
+  --bg2:#111118;
+  --bg3:#18181F;
+  --card:#1C1C25;
+  --pink:#E8197A;
+  --pink2:#FF4DA6;
+  --pink-dim:#3D0B20;
+  --gold:#F5C842;
+  --text:#F0EEF8;
+  --muted:#8A87A0;
+  --border:#2A2835;
+  --border2:#3D3A55;
+  --white:#FFFFFF;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Outfit',sans-serif;color:var(--text);background:var(--bg);overflow-x:hidden;cursor:none}
+
+/* CUSTOM CURSOR */
+.cursor{position:fixed;width:12px;height:12px;background:var(--pink);border-radius:50%;pointer-events:none;z-index:9999;transition:transform 0.15s,opacity 0.15s;mix-blend-mode:difference}
+.cursor-ring{position:fixed;width:36px;height:36px;border:1.5px solid var(--pink);border-radius:50%;pointer-events:none;z-index:9998;transition:transform 0.08s}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;align-items:center;justify-content:space-between;padding:0 56px;height:72px;background:rgba(10,10,15,0.85);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
+.nav-logo{font-family:'Playfair Display',serif;font-size:22px;font-weight:900;letter-spacing:4px;color:var(--white);text-transform:uppercase}
+.nav-logo span{color:var(--pink)}
+.nav-links{display:flex;gap:36px;list-style:none}
+.nav-links a{text-decoration:none;font-size:12px;font-weight:500;letter-spacing:2px;text-transform:uppercase;color:var(--muted);transition:color 0.25s;position:relative}
+.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1px;background:var(--pink);transition:width 0.3s}
+.nav-links a:hover{color:var(--text)}
+.nav-links a:hover::after{width:100%}
+.nav-cta{background:var(--pink);color:var(--white);border:none;padding:10px 28px;font-size:12px;font-weight:600;letter-spacing:2px;text-transform:uppercase;border-radius:2px;cursor:none;font-family:'Outfit',sans-serif;transition:background 0.2s}
+.nav-cta:hover{background:var(--pink2)}
+
+/* HERO */
+#home{min-height:100vh;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;padding-top:72px}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 80% 80% at 60% 50%,rgba(232,25,122,0.12) 0%,transparent 70%),radial-gradient(ellipse 50% 60% at 10% 80%,rgba(245,200,66,0.06) 0%,transparent 60%),var(--bg)}
+.hero-grain{position:absolute;inset:0;opacity:0.04;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");background-size:200px}
+.hero-line{position:absolute;top:0;left:50%;width:1px;height:100%;background:linear-gradient(to bottom,transparent,var(--border),transparent);opacity:0.4}
+.hero-content{position:relative;z-index:2;text-align:center;padding:0 24px}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:12px;font-size:11px;font-weight:500;letter-spacing:4px;text-transform:uppercase;color:var(--pink);margin-bottom:28px}
+.hero-eyebrow::before,.hero-eyebrow::after{content:'';width:32px;height:1px;background:var(--pink);opacity:0.5}
+.hero-title{font-family:'Playfair Display',serif;font-size:clamp(72px,12vw,140px);font-weight:900;line-height:0.9;letter-spacing:-2px;color:var(--white);text-transform:uppercase;margin-bottom:12px}
+.hero-title .line2{font-style:italic;color:var(--pink);-webkit-text-stroke:1px var(--pink);color:transparent;display:block}
+.hero-title .line2.filled{color:var(--pink);-webkit-text-stroke:0}
+.hero-sub{font-size:14px;font-weight:300;color:var(--muted);letter-spacing:1px;margin:28px 0 48px;max-width:480px;margin-left:auto;margin-right:auto;line-height:1.9}
+.hero-btns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+.btn-pink{background:var(--pink);color:var(--white);border:none;padding:16px 44px;font-size:12px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;border-radius:2px;cursor:none;text-decoration:none;display:inline-block;transition:all 0.25s;position:relative;overflow:hidden}
+.btn-pink::before{content:'';position:absolute;inset:0;background:var(--pink2);transform:translateX(-100%);transition:transform 0.3s}
+.btn-pink:hover::before{transform:translateX(0)}
+.btn-pink span{position:relative;z-index:1}
+.btn-ghost{background:transparent;color:var(--text);border:1px solid var(--border2);padding:16px 44px;font-size:12px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;border-radius:2px;cursor:none;text-decoration:none;display:inline-block;transition:all 0.25s}
+.btn-ghost:hover{border-color:var(--pink);color:var(--pink)}
+.hero-scroll-hint{position:absolute;bottom:40px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:10px;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--muted)}
+.scroll-bar{width:1px;height:60px;background:linear-gradient(to bottom,var(--pink),transparent);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:0.2}50%{opacity:1}}
+.hero-badges{display:flex;gap:24px;justify-content:center;margin-top:56px;flex-wrap:wrap}
+.h-badge{background:var(--card);border:1px solid var(--border);border-radius:2px;padding:14px 24px;text-align:center}
+.h-badge-num{font-family:'Playfair Display',serif;font-size:28px;font-weight:700;color:var(--pink)}
+.h-badge-label{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-top:2px}
+
+/* SECTION BASE */
+section{padding:110px 56px}
+.sec-tag{font-size:10px;font-weight:600;letter-spacing:4px;text-transform:uppercase;color:var(--pink);margin-bottom:14px}
+.sec-title{font-family:'Playfair Display',serif;font-size:clamp(40px,5vw,64px);font-weight:900;line-height:1.05;color:var(--white)}
+.sec-title em{font-style:italic;color:var(--pink)}
+.rule{width:56px;height:2px;background:var(--pink);margin:20px 0 28px;opacity:0.8}
+
+/* ABOUT */
+#about{background:var(--bg2)}
+.about-wrap{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:100px;align-items:center}
+.about-visual{position:relative}
+.about-card{background:var(--card);border:1px solid var(--border);border-radius:4px;overflow:hidden;min-height:480px;display:flex;align-items:center;justify-content:center;position:relative}
+.about-card-bg{position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(232,25,122,0.15),transparent 70%)}
+.about-icon{font-size:120px;opacity:0.15;position:absolute}
+.about-card-content{position:relative;z-index:2;text-align:center;padding:40px}
+.about-logo-big{font-family:'Playfair Display',serif;font-size:64px;font-weight:900;color:var(--white);letter-spacing:6px;line-height:1}
+.about-logo-big span{color:var(--pink)}
+.float-card{position:absolute;bottom:-20px;right:-20px;background:var(--pink);color:var(--white);padding:20px 28px;border-radius:2px}
+.float-card strong{display:block;font-family:'Playfair Display',serif;font-size:22px;font-weight:700}
+.float-card small{font-size:10px;letter-spacing:2px;text-transform:uppercase;opacity:0.85}
+.about-text p{font-size:15px;line-height:2;color:var(--muted);margin-bottom:16px}
+.about-stats{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:36px}
+.a-stat{background:var(--card);border:1px solid var(--border);padding:20px;border-radius:2px;border-left:3px solid var(--pink)}
+.a-stat-num{font-family:'Playfair Display',serif;font-size:36px;font-weight:700;color:var(--pink)}
+.a-stat-label{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-top:4px}
+.owner-card{display:flex;align-items:center;gap:16px;background:var(--card);border:1px solid var(--border);border-radius:2px;padding:20px 24px;margin-top:28px}
+.owner-avatar{width:52px;height:52px;border-radius:50%;background:var(--pink-dim);border:2px solid var(--pink);display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:var(--pink);flex-shrink:0}
+.owner-name{font-size:15px;font-weight:600;color:var(--text)}
+.owner-title{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-top:2px}
+
+/* MENU */
+#menu{background:var(--bg)}
+.menu-wrap{max-width:1200px;margin:0 auto}
+.menu-head{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:48px;flex-wrap:wrap;gap:24px}
+.menu-tabs{display:flex;gap:8px;flex-wrap:wrap}
+.tab{padding:10px 22px;font-size:11px;letter-spacing:2px;text-transform:uppercase;font-weight:600;border:1px solid var(--border);border-radius:2px;background:transparent;color:var(--muted);cursor:none;transition:all 0.2s;font-family:'Outfit',sans-serif}
+.tab:hover,.tab.active{background:var(--pink);color:var(--white);border-color:var(--pink)}
+.menu-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1px;background:var(--border)}
+.m-card{background:var(--bg);padding:28px;transition:background 0.2s;position:relative;overflow:hidden}
+.m-card::before{content:'';position:absolute;top:0;left:0;width:3px;height:0;background:var(--pink);transition:height 0.3s}
+.m-card:hover{background:var(--card)}
+.m-card:hover::before{height:100%}
+.m-card-cat{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--pink);margin-bottom:8px;font-weight:600}
+.m-card-name{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:var(--white);margin-bottom:6px}
+.m-card-desc{font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:16px}
+.m-card-footer{display:flex;align-items:center;justify-content:space-between}
+.m-price{font-size:16px;font-weight:600;color:var(--gold)}
+.m-price small{font-size:11px;color:var(--muted);font-weight:400}
+.m-tag{font-size:9px;letter-spacing:1.5px;text-transform:uppercase;padding:4px 10px;border:1px solid var(--border2);color:var(--muted);border-radius:1px}
+
+/* Category separator */
+.cat-header{background:var(--bg3);padding:20px 28px;display:flex;align-items:center;gap:16px;grid-column:1/-1;border-left:4px solid var(--pink)}
+.cat-header h3{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:var(--white)}
+.cat-header span{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted)}
+
+/* GALLERY */
+#gallery{background:var(--bg2)}
+.gallery-wrap{max-width:1200px;margin:0 auto}
+.gallery-head{margin-bottom:48px}
+.gal-grid{display:grid;grid-template-columns:repeat(12,1fr);grid-template-rows:200px 200px;gap:8px}
+.gal-item{border-radius:2px;overflow:hidden;display:flex;align-items:flex-end;padding:20px;position:relative;background:var(--card)}
+.gal-item::before{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.7),transparent)}
+.gal-label{position:relative;z-index:1;font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:var(--white)}
+.gal-label small{display:block;font-family:'Outfit',sans-serif;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.5);font-weight:400;margin-top:2px}
+.g1{grid-column:span 5;background:linear-gradient(135deg,#1a0a12,#3D0B20)}
+.g2{grid-column:span 4;background:linear-gradient(135deg,#0a1020,#1a2850)}
+.g3{grid-column:span 3;background:linear-gradient(135deg,#0a1a10,#1a3020)}
+.g4{grid-column:span 3;background:linear-gradient(135deg,#1a1020,#301830)}
+.g5{grid-column:span 5;background:linear-gradient(135deg,#1a0f00,#2a1a00)}
+.g6{grid-column:span 4;background:linear-gradient(135deg,#0a1520,#102030)}
+.gal-icon{font-size:48px;position:absolute;top:16px;right:16px;opacity:0.3}
+
+/* CONTACT */
+#contact{background:var(--bg)}
+.contact-wrap{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
+.contact-info p{font-size:15px;color:var(--muted);line-height:1.9;margin-bottom:32px}
+.c-list{list-style:none;display:flex;flex-direction:column;gap:16px}
+.c-item{display:flex;gap:16px;align-items:flex-start;padding:20px;background:var(--card);border:1px solid var(--border);border-radius:2px;transition:border-color 0.2s}
+.c-item:hover{border-color:var(--pink)}
+.c-icon{width:42px;height:42px;background:var(--pink-dim);border:1px solid var(--pink);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;color:var(--pink)}
+.c-text strong{display:block;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--pink);margin-bottom:4px;font-weight:600}
+.c-text span{font-size:14px;color:var(--muted)}
+.contact-form{background:var(--card);border:1px solid var(--border);padding:48px;border-radius:2px}
+.form-group{margin-bottom:20px}
+.form-group label{display:block;font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:var(--muted);margin-bottom:8px;font-weight:600}
+.form-group input,.form-group textarea,.form-group select{width:100%;padding:14px 16px;border:1px solid var(--border);border-radius:2px;font-family:'Outfit',sans-serif;font-size:14px;color:var(--text);background:var(--bg3);outline:none;transition:border-color 0.2s;-webkit-appearance:none}
+.form-group input:focus,.form-group textarea:focus,.form-group select:focus{border-color:var(--pink)}
+.form-group textarea{min-height:130px;resize:vertical}
+.form-group select option{background:var(--bg3)}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.form-submit{width:100%;background:var(--pink);color:var(--white);border:none;padding:18px;font-size:12px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;cursor:none;border-radius:2px;font-family:'Outfit',sans-serif;transition:background 0.2s;margin-top:8px}
+.form-submit:hover{background:var(--pink2)}
+
+/* FOOTER */
+footer{background:var(--bg2);border-top:1px solid var(--border);padding:60px 56px 32px}
+.footer-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:48px;flex-wrap:wrap;gap:40px}
+.footer-logo{font-family:'Playfair Display',serif;font-size:36px;font-weight:900;letter-spacing:6px;color:var(--white)}
+.footer-logo span{color:var(--pink)}
+.footer-tagline{font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-top:6px}
+.footer-links{display:flex;gap:32px;flex-wrap:wrap}
+.footer-links a{text-decoration:none;font-size:12px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);transition:color 0.2s}
+.footer-links a:hover{color:var(--pink)}
+.footer-bottom{border-top:1px solid var(--border);padding-top:24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.footer-copy{font-size:12px;color:var(--muted)}
+.footer-owner{font-size:12px;color:var(--muted)}
+.footer-owner strong{color:var(--pink)}
+
+/* ANIMATIONS */
+.reveal{opacity:0;transform:translateY(32px);transition:opacity 0.8s ease,transform 0.8s ease}
+.reveal.visible{opacity:1;transform:none}
+.reveal-delay-1{transition-delay:0.1s}
+.reveal-delay-2{transition-delay:0.2s}
+.reveal-delay-3{transition-delay:0.3s}
+
+/* DELIVERY BADGE */
+.delivery-badge{display:inline-flex;align-items:center;gap:10px;background:var(--pink-dim);border:1px solid var(--pink);border-radius:2px;padding:12px 24px;margin-top:36px;font-size:12px;letter-spacing:1.5px;text-transform:uppercase;color:var(--pink);font-weight:600}
+.delivery-dot{width:8px;height:8px;border-radius:50%;background:var(--pink);animation:blink 1.5s infinite}
+@keyframes blink{0%,100%{opacity:0.3}50%{opacity:1}}
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">ICE <span>LAND</span></div>
+  <ul class="nav-links">
+    <li><a href="#home">Home</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#menu">Menu</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <button class="nav-cta" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Order Now</button>
+</nav>
+
+<!-- HERO -->
+<section id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-grain"></div>
+  <div class="hero-line"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Park View City · Lahore · Est. 2020</div>
+    <h1 class="hero-title">
+      ICE<br>
+      <span class="line2 filled">LAND</span>
+    </h1>
+    <p class="hero-sub">Ice cream, food, drinks & more — crafted fresh daily at 87 Tulip Block, Main Boulevard, Park View City.</p>
+    <div class="hero-btns">
+      <a href="#menu" class="btn-pink"><span>Explore Menu</span></a>
+      <a href="#contact" class="btn-ghost">Visit Us</a>
+    </div>
+    <div class="hero-badges">
+      <div class="h-badge"><div class="h-badge-num">50+</div><div class="h-badge-label">Menu Items</div></div>
+      <div class="h-badge"><div class="h-badge-num">100%</div><div class="h-badge-label">Fresh Daily</div></div>
+      <div class="h-badge"><div class="h-badge-num">Free</div><div class="h-badge-label">Home Delivery</div></div>
+      <div class="h-badge"><div class="h-badge-num">11AM</div><div class="h-badge-label">Opens Daily</div></div>
+    </div>
+  </div>
+  <div class="hero-scroll-hint">
+    <div class="scroll-bar"></div>
+    <span>Scroll</span>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-wrap reveal">
+    <div class="about-visual">
+      <div class="about-card">
+        <div class="about-card-bg"></div>
+        <div class="about-icon">🍦</div>
+        <div class="about-card-content">
+          <div class="about-logo-big">ICE<br><span>LAND</span></div>
+          <div style="font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-top:16px">Park View City · Lahore</div>
+        </div>
+      </div>
+      <div class="float-card">
+        <small>Open Daily</small>
+        <strong>11 AM – 11 PM</strong>
+      </div>
+    </div>
+    <div class="about-text">
+      <div class="sec-tag">Our Story</div>
+      <h2 class="sec-title">Where every<br>craving finds<br>its <em>answer</em></h2>
+      <div class="rule"></div>
+      <p>Nestled at 87 Tulip Block, Main Boulevard in Park View City, Ice Land is Lahore's favourite spot for ice cream, fresh food, cold drinks and mouthwatering chaat.</p>
+      <p>We believe great food should be accessible, delicious and made with care — every single day. From blended sodas to special samosas, we serve happiness on every plate.</p>
+      <div class="about-stats">
+        <div class="a-stat"><div class="a-stat-num">50+</div><div class="a-stat-label">Menu Items</div></div>
+        <div class="a-stat"><div class="a-stat-num">Free</div><div class="a-stat-label">Home Delivery</div></div>
+        <div class="a-stat"><div class="a-stat-num">Daily</div><div class="a-stat-label">Fresh Made</div></div>
+        <div class="a-stat"><div class="a-stat-num">5★</div><div class="a-stat-label">Service</div></div>
+      </div>
+      <div class="owner-card">
+        <div class="owner-avatar">MA</div>
+        <div>
+          <div class="owner-name">Muhammad Abdullah Mushtaq</div>
+          <div class="owner-title">Owner & Founder, Ice Land</div>
+        </div>
+      </div>
+      <div class="delivery-badge"><div class="delivery-dot"></div>Free Home Delivery Available</div>
+    </div>
+  </div>
+</section>
+
+<!-- MENU -->
+<section id="menu">
+  <div class="menu-wrap">
+    <div class="menu-head reveal">
+      <div>
+        <div class="sec-tag">What We Serve</div>
+        <h2 class="sec-title">Our <em>Menu</em></h2>
+      </div>
+      <div class="menu-tabs">
+        <button class="tab active" onclick="filterMenu('all',this)">All</button>
+        <button class="tab" onclick="filterMenu('ice-cream',this)">Ice Cream</button>
+        <button class="tab" onclick="filterMenu('drinks',this)">Drinks</button>
+        <button class="tab" onclick="filterMenu('chaat',this)">Chaat</button>
+        <button class="tab" onclick="filterMenu('samosa',this)">Samosa</button>
+        <button class="tab" onclick="filterMenu('fries',this)">Fries</button>
+        <button class="tab" onclick="filterMenu('salad',this)">Salad</button>
+      </div>
+    </div>
+    <div class="menu-grid" id="menuGrid"></div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery">
+  <div class="gallery-wrap reveal">
+    <div class="gallery-head">
+      <div class="sec-tag">Our Space & Food</div>
+      <h2 class="sec-title">A Taste of<br><em>Ice Land</em></h2>
+      <div class="rule"></div>
+    </div>
+    <div class="gal-grid">
+      <div class="gal-item g1">
+        <div class="gal-icon">🍦</div>
+        <div class="gal-label">Ice Cream<small>9 Flavours Available</small></div>
+      </div>
+      <div class="gal-item g2">
+        <div class="gal-icon">🧋</div>
+        <div class="gal-label">Blended Sodas<small>Refreshing & Chilled</small></div>
+      </div>
+      <div class="gal-item g3">
+        <div class="gal-icon">🥗</div>
+        <div class="gal-label">Fresh Salads<small>Daily Prep</small></div>
+      </div>
+      <div class="gal-item g4">
+        <div class="gal-icon">🫔</div>
+        <div class="gal-label">Samosas & Rolls<small>Crispy & Hot</small></div>
+      </div>
+      <div class="gal-item g5">
+        <div class="gal-icon">🍟</div>
+        <div class="gal-label">Loaded Fries<small>4 Varieties</small></div>
+      </div>
+      <div class="gal-item g6">
+        <div class="gal-icon">🍽️</div>
+        <div class="gal-label">Chaat Corner<small>Street Food Royalty</small></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-wrap reveal">
+    <div class="contact-info">
+      <div class="sec-tag">Find Us</div>
+      <h2 class="sec-title">Visit <em>Ice Land</em></h2>
+      <div class="rule"></div>
+      <p>We're open daily and offer free home delivery. Walk in, dine in, or call us for delivery — we're always ready to serve you something delicious.</p>
+      <ul class="c-list">
+        <li class="c-item">
+          <div class="c-icon">📍</div>
+          <div class="c-text"><strong>Address</strong><span>87 Tulip Block, Main Boulevard, Park View City, Lahore</span></div>
+        </li>
+        <li class="c-item">
+          <div class="c-icon">📞</div>
+          <div class="c-text"><strong>Phone</strong><span>0323-6103630 &nbsp;|&nbsp; 0324-6074513</span></div>
+        </li>
+        <li class="c-item">
+          <div class="c-icon">🕐</div>
+          <div class="c-text"><strong>Hours</strong><span>Open Daily — 11:00 AM to 11:00 PM</span></div>
+        </li>
+        <li class="c-item">
+          <div class="c-icon">🚗</div>
+          <div class="c-text"><strong>Delivery</strong><span>Free Home Delivery Available</span></div>
+        </li>
+      </ul>
+    </div>
+    <div class="contact-form">
+      <div class="sec-tag" style="margin-bottom:20px">Send a Message</div>
+      <div class="form-row">
+        <div class="form-group"><label>First Name</label><input type="text" placeholder="Ali"/></div>
+        <div class="form-group"><label>Last Name</label><input type="text" placeholder="Khan"/></div>
+      </div>
+      <div class="form-group"><label>Phone Number</label><input type="tel" placeholder="0300-0000000"/></div>
+      <div class="form-group"><label>Subject</label>
+        <select>
+          <option value="">Select a topic...</option>
+          <option>Delivery Order</option>
+          <option>Reservation / Booking</option>
+          <option>Feedback</option>
+          <option>Catering Inquiry</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="form-group"><label>Message</label><textarea placeholder="Tell us how we can help..."></textarea></div>
+      <button class="form-submit" id="submitBtn" onclick="submitForm()">Send Message</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div>
+      <div class="footer-logo">ICE <span>LAND</span></div>
+      <div class="footer-tagline">Park View City · Lahore · Pakistan</div>
+    </div>
+    <div class="footer-links">
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#menu">Menu</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copy">© 2026 Ice Land. All rights reserved.</div>
+    <div class="footer-owner">Owner: <strong>Muhammad Abdullah Mushtaq</strong></div>
+  </div>
+</footer>
+
+<script>
+// Custom cursor
+const cur=document.getElementById('cursor');
+const ring=document.getElementById('cursorRing');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx-6+'px';cur.style.top=my-6+'px'});
+function animRing(){rx+=(mx-rx-18)*0.12;ry+=(my-ry-18)*0.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(animRing)}
+animRing();
+
+// Menu data from image
+const menuData=[
+  // Ice Cream
+  {cat:'ice-cream',name:'Mango Ice Cream',desc:'Single scoop Rs 150. Rich mango flavour.',priceS:'Rs 320',priceL:'Rs 430',tag:'Fruity'},
+  {cat:'ice-cream',name:'Strawberry Ice Cream',desc:'Single scoop Rs 150. Classic strawberry.',priceS:'Rs 320',priceL:'Rs 430',tag:'Special'},
+  {cat:'ice-cream',name:'Tutti Fruity',desc:'Single scoop Rs 150. Mixed fruit delight.',priceS:'Rs 320',priceL:'Rs 430',tag:'Tutti Fruity'},
+  {cat:'ice-cream',name:'Vanilla Ice Cream',desc:'Single scoop Rs 150. Pure and classic.',priceS:'Rs 320',priceL:'Rs 430',tag:'Classic'},
+  {cat:'ice-cream',name:'Chocolate Ice Cream',desc:'Single scoop Rs 150. Rich dark chocolate.',priceS:'Rs 320',priceL:'Rs 430',tag:'Classic'},
+  {cat:'ice-cream',name:'Pineapple Ice Cream',desc:'Single scoop Rs 150. Tropical pineapple.',priceS:'Rs 320',priceL:'Rs 430',tag:'Fruity'},
+  {cat:'ice-cream',name:'Kulfa',desc:'Single scoop Rs 150. Traditional kulfa.',priceS:'Rs 320',priceL:'Rs 430',tag:'Traditional'},
+  {cat:'ice-cream',name:'Pista Badam',desc:'Single scoop Rs 150. Pistachio & almond.',priceS:'Rs 320',priceL:'Rs 430',tag:'Premium'},
+  {cat:'ice-cream',name:'Vanilla Chip',desc:'Single scoop Rs 150. Vanilla with choco chips.',priceS:'Rs 320',priceL:'Rs 430',tag:'Classic'},
+  {cat:'ice-cream',name:'Chocolate Chip',desc:'Single scoop Rs 150. Double chocolate.',priceS:'Rs 320',priceL:'Rs 430',tag:'Classic'},
+  // Blended Sodas
+  {cat:'drinks',name:'Mint Margarita',desc:'Refreshing mint blended soda.',priceS:'Rs 250',priceL:'Rs 350',tag:'Soda'},
+  {cat:'drinks',name:'Lemon Lite',desc:'Light and tangy lemon soda.',priceS:'Rs 280',priceL:'Rs 380',tag:'Soda'},
+  {cat:'drinks',name:'Pink Lemon Lite',desc:'Pink lemon blended refreshment.',priceS:'Rs 280',priceL:'Rs 380',tag:'Soda'},
+  {cat:'drinks',name:'Doodh Soda',desc:'Creamy milk and soda blend.',priceS:'Rs 300',priceL:'Rs 400',tag:'Soda'},
+  {cat:'drinks',name:'Fresh Lime Soda',desc:'Freshly squeezed lime soda.',priceS:'Rs 300',priceL:'Rs 400',tag:'Soda'},
+  {cat:'drinks',name:'Vanilla Ice Cream Soda',desc:'Vanilla ice cream blended soda.',priceS:'Rs 400',priceL:'Rs 550',tag:'Premium'},
+  {cat:'drinks',name:'Strawberry Ice Cream Soda',desc:'Strawberry ice cream blended soda.',priceS:'Rs 370',priceL:'Rs 550',tag:'Premium'},
+  {cat:'drinks',name:'Lemon Soda',desc:'Classic chilled lemon soda.',priceS:'—',priceL:'Rs 350',tag:'Soda'},
+  // Chaat (Mirch Mas)
+  {cat:'chaat',name:'Papri Chaat',desc:'Crispy papri with tangy chaat masala.',priceS:'—',priceL:'Rs 240',tag:'Chaat'},
+  {cat:'chaat',name:'Ice & Chaat',desc:'A refreshing mix of ice and chaat.',priceS:'—',priceL:'Rs 500',tag:'Special'},
+  {cat:'chaat',name:'Fruit Chaat',desc:'Fresh seasonal fruits with chaat.',priceS:'—',priceL:'Rs 300',tag:'Chaat'},
+  {cat:'chaat',name:'Chana Chaat',desc:'Spiced chickpeas with tamarind.',priceS:'—',priceL:'—',tag:'Chaat'},
+  {cat:'chaat',name:'Mixed Chaat',desc:'A delicious mix of all chaats.',priceS:'—',priceL:'—',tag:'Popular'},
+  {cat:'chaat',name:'Gol Gappe',desc:'Crispy puris with spiced water.',priceS:'—',priceL:'—',tag:'Street Food'},
+  {cat:'chaat',name:'Dry Fruit Cream Chaat',desc:'Chaat topped with dry fruits & cream.',priceS:'—',priceL:'—',tag:'Premium'},
+  {cat:'chaat',name:'Dry Fruit Chaat',desc:'Chaat with a dry fruit topping.',priceS:'—',priceL:'—',tag:'Premium'},
+  // Samosa
+  {cat:'samosa',name:'Chicken Samosa',desc:'Crispy golden samosa with spiced chicken filling.',priceS:'Rs 50',priceL:'Rs 100',tag:'Hot'},
+  {cat:'samosa',name:'Chicken Macaroni Samosa',desc:'Unique samosa with chicken macaroni.',priceS:'Rs 80',priceL:'Rs 100',tag:'Special'},
+  {cat:'samosa',name:'Vegetable Samosa',desc:'Classic crispy veggie samosa.',priceS:'Rs 40',priceL:'Rs 80',tag:'Veggie'},
+  {cat:'samosa',name:'Potato Samosa',desc:'Traditional potato filled samosa.',priceS:'Rs 40',priceL:'Rs 70',tag:'Classic'},
+  {cat:'samosa',name:'Malai Boti Samosa',desc:'Creamy malai boti inside crispy shell.',priceS:'Rs 50',priceL:'—',tag:'Premium'},
+  {cat:'samosa',name:'Chicken Roll',desc:'Flaky pastry roll with spiced chicken.',priceS:'Rs 50',priceL:'—',tag:'Hot'},
+  {cat:'samosa',name:'Vegetable Roll',desc:'Crispy roll with seasoned vegetables.',priceS:'Rs 40',priceL:'—',tag:'Veggie'},
+  {cat:'samosa',name:'Special Samosa Chaat',desc:'Our signature samosa chaat platter.',priceS:'—',priceL:'Rs 250',tag:'Signature'},
+  // Fries
+  {cat:'fries',name:'Crunchy Fries',desc:'Golden crispy fries fried to perfection.',priceS:'Rs 230',priceL:'Rs 350',tag:'Classic'},
+  {cat:'fries',name:'BBQ Fries',desc:'Fries tossed in smoky BBQ seasoning.',priceS:'Rs 280',priceL:'Rs 400',tag:'Popular'},
+  {cat:'fries',name:'Loaded Fries',desc:'Fries loaded with toppings & sauce.',priceS:'Rs 380',priceL:'Rs 480',tag:'Loaded'},
+  {cat:'fries',name:'Garlic Mayo Fries',desc:'Crispy fries with creamy garlic mayo.',priceS:'Rs 280',priceL:'Rs 400',tag:'Creamy'},
+  // Salad
+  {cat:'salad',name:'Russian Salad',desc:'Creamy classic Russian salad.',priceS:'Rs 380',priceM:'Rs 660',priceL:'Rs 1090',tag:'Classic'},
+  {cat:'salad',name:'Apple Capple',desc:'Fresh apple capple salad.',priceS:'Rs 380',priceM:'Rs 660',priceL:'Rs 1090',tag:'Fresh'},
+  {cat:'salad',name:'Creamy Macaroni',desc:'Macaroni in a rich creamy dressing.',priceS:'Rs 380',priceM:'Rs 660',priceL:'Rs 1090',tag:'Popular'},
+  {cat:'salad',name:'Spicy Macaroni',desc:'Macaroni with a spicy kick.',priceS:'Rs 380',priceM:'Rs 660',priceL:'Rs 1090',tag:'Spicy'},
+  {cat:'salad',name:'Creamy Spaghetti',desc:'Spaghetti in rich cream sauce.',priceS:'Rs 380',priceM:'Rs 660',priceL:'Rs 1090',tag:'Creamy'},
+  {cat:'salad',name:'Spicy Spaghetti',desc:'Spaghetti with bold spicy flavour.',priceS:'Rs 380',priceM:'Rs 660',priceL:'Rs 1090',tag:'Spicy'},
+  {cat:'salad',name:'Mix Salad',desc:'Fresh mixed vegetables salad.',priceS:'Rs 380',priceM:'Rs 660',priceL:'Rs 1090',tag:'Healthy'},
+  {cat:'salad',name:'Spicy Russian',desc:'Russian salad with a spicy twist.',priceS:'Rs 380',priceM:'Rs 660',priceL:'Rs 1090',tag:'Spicy'},
+  {cat:'salad',name:'Salaad Salad',desc:'Freshly prepared garden salad.',priceS:'Rs 380',priceM:'Rs 660',priceL:'Rs 1090',tag:'Fresh'},
+];
+
+const catLabels={
+  'ice-cream':'🍦 Ice Cream',
+  'drinks':'🧋 Blended Sodas',
+  'chaat':'🍽️ Mirch Mas / Chaat',
+  'samosa':'🫔 Special Samosa & Rolls',
+  'fries':'🍟 Fries',
+  'salad':'🥗 Salads',
+};
+
+function getPrice(item){
+  if(item.priceM) return `${item.priceS} / ${item.priceM} / ${item.priceL}`;
+  if(item.priceL && item.priceS && item.priceL!==item.priceS && item.priceS!=='—') return `${item.priceS} / ${item.priceL}`;
+  if(item.priceL && item.priceL!=='—') return item.priceL;
+  if(item.priceS && item.priceS!=='—') return item.priceS;
+  return 'Ask us';
+}
+
+function renderMenu(filter){
+  const grid=document.getElementById('menuGrid');
+  const cats=filter==='all'?['ice-cream','drinks','chaat','samosa','fries','salad']:[filter];
+  let html='';
+  cats.forEach(cat=>{
+    const items=menuData.filter(i=>i.cat===cat);
+    if(!items.length)return;
+    html+=`<div class="cat-header"><h3>${catLabels[cat]}</h3><span>${items.length} items</span></div>`;
+    items.forEach(item=>{
+      html+=`<div class="m-card">
+        <div class="m-card-cat">${catLabels[cat]}</div>
+        <div class="m-card-name">${item.name}</div>
+        <div class="m-card-desc">${item.desc}</div>
+        <div class="m-card-footer">
+          <span class="m-price">${getPrice(item)}</span>
+          <span class="m-tag">${item.tag}</span>
+        </div>
+      </div>`;
+    });
+  });
+  grid.innerHTML=html;
+}
+
+function filterMenu(cat,el){
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  el.classList.add('active');
+  renderMenu(cat);
+}
+
+renderMenu('all');
+
+// Form submit
+function submitForm(){
+  const btn=document.getElementById('submitBtn');
+  btn.textContent='Message Sent ✓';
+  btn.style.background='#1D9E75';
+  btn.style.cursor='default';
+}
+
+// Scroll reveal
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')});
+},{threshold:0.08});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
